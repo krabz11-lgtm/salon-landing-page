@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zola Hair &amp; Beauty Studio | Rosebank, Johannesburg (Demo)</title>
+  <meta name="description"
+    content="Demo landing page for a fictional Johannesburg salon. Pick a service and book on WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #2A1A2E;
+      --mist: #EFE9F5;
+      --paper: #FFFFFF;
+      --gold: #F2B134;
+      --sage: #4F7A68;
+      --line: #D9CFE4;
+      --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--mist);
+      line-height: 1.6;
+      font-size: 1.0625rem
+    }
+
+    a {
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.25rem
+    }
+
+    header {
+      background: var(--ink);
+      color: var(--mist)
+    }
+
+    header .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: 1rem;
+      gap: 1rem
+    }
+
+    .brand {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: .01em
+    }
+
+    header a.call {
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid var(--gold)
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding-block: 3rem 4rem
+    }
+
+    @media(min-width:860px) {
+      .hero {
+        grid-template-columns: 1fr 1.05fr;
+        align-items: start;
+        padding-block: 4.5rem 5rem
+      }
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 6vw, 3.9rem);
+      line-height: 1.04;
+      letter-spacing: -.02em
+    }
+
+    .lede {
+      margin-top: 1.25rem;
+      max-width: 34ch;
+      font-size: 1.15rem
+    }
+
+    .hint {
+      margin-top: 1.5rem;
+      font-size: .95rem;
+      color: #5b4a62;
+      max-width: 38ch
+    }
+
+    .menu {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      padding: .5rem 1.25rem 1rem
+    }
+
+    .menu h2 {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      padding: .9rem 0 .4rem;
+      border-bottom: 2px solid var(--ink)
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .25rem 1rem;
+      align-items: center;
+      padding: .95rem 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .item:last-of-type {
+      border-bottom: 0
+    }
+
+    .item b {
+      font-weight: 700
+    }
+
+    .item small {
+      display: block;
+      color: #5b4a62;
+      font-size: .9rem
+    }
+
+    .price {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.15rem
+    }
+
+    .book {
+      grid-column: 1/-1;
+      justify-self: start;
+      background: var(--ink);
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      padding: .55rem 1rem;
+      font: 700 .95rem var(--body);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block
+    }
+
+    .book:hover {
+      background: var(--sage)
+    }
+
+    .item.picked {
+      background: #FFF6DD;
+      margin-inline: -1.25rem;
+      padding-inline: 1.25rem
+    }
+
+    .item.picked .book {
+      background: var(--sage)
+    }
+
+    .note {
+      font-size: .85rem;
+      color: #5b4a62;
+      padding-top: .75rem
+    }
+
+    section.how {
+      background: var(--ink);
+      color: var(--mist);
+      padding-block: 3.5rem
+    }
+
+    .how h2,
+    .visit h2 {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -.01em
+    }
+
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.75rem;
+      display: grid;
+      gap: 1.25rem;
+      counter-reset: s
+    }
+
+    @media(min-width:760px) {
+      .steps {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    .steps li {
+      counter-increment: s;
+      border-top: 3px solid var(--gold);
+      padding-top: .9rem
+    }
+
+    .steps li::before {
+      content: "Step " counter(s);
+      display: block;
+      font-weight: 700;
+      color: var(--gold);
+      font-size: .9rem
+    }
+
+    .steps strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.2rem;
+      margin: .2rem 0
+    }
+
+    .visit {
+      padding-block: 3.5rem
+    }
+
+    .facts {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1.5rem
+    }
+
+    @media(min-width:760px) {
+      .facts {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%
+    }
+
+    td {
+      padding: .45rem 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    td:last-child {
+      text-align: right;
+      font-weight: 500
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 700;
+      padding: .9rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none
+    }
+
+    .cta:hover {
+      filter: brightness(.95)
+    }
+
+    footer {
+      background: var(--ink);
+      color: #cbbfd6;
+      font-size: .9rem;
+      padding-block: 1.5rem
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap">
+      <span class="brand">Zola Hair &amp; Beauty</span>
+      <a class="call" href="#book-now" id="top-wa">Book on WhatsApp</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <h1>Hair and beauty, booked on WhatsApp.</h1>
+        <p class="lede">Pick a service, tap Book, and we confirm your slot in the same chat. No forms, no app.</p>
+        <p class="hint">Tap a service on the right. Your WhatsApp message is filled in for you.</p>
+      </div>
+
+      <div class="menu" id="menu" aria-labelledby="menu-h">
+        <h2 id="menu-h">Services and prices (ZAR)</h2>
+        <div class="item" data-name="Box braids" data-price="650">
+          <div><b>Box braids</b><small>About 4 to 5 hours</small></div><span class="price">R650</span>
+          <button class="book" type="button">Book box braids</button>
+        </div>
+        <div class="item" data-name="Silk press" data-price="350">
+          <div><b>Silk press</b><small>Wash, treat and straighten, about 2 hours</small></div><span
+            class="price">R350</span>
+          <button class="book" type="button">Book silk press</button>
+        </div>
+        <div class="item" data-name="Wash and blow-dry" data-price="180">
+          <div><b>Wash and blow-dry</b><small>About 1 hour</small></div><span class="price">R180</span>
+          <button class="book" type="button">Book wash and blow-dry</button>
+        </div>
+        <div class="item" data-name="Gel manicure" data-price="220">
+          <div><b>Gel manicure</b><small>About 1 hour</small></div><span class="price">R220</span>
+          <button class="book" type="button">Book gel manicure</button>
+        </div>
+        <div class="item" data-name="Express facial" data-price="450">
+          <div><b>Express facial</b><small>Cleanse, exfoliate, mask, 45 minutes</small></div><span
+            class="price">R450</span>
+          <button class="book" type="button">Book express facial</button>
+        </div>
+        <p class="note">Demo salon with sample prices. Not a real business.</p>
+      </div>
+    </div>
+
+    <section class="how" aria-labelledby="how-h">
+      <div class="wrap">
+        <h2 id="how-h">How booking works</h2>
+        <ol class="steps">
+          <li><strong>Choose a service</strong>Tap Book next to what you want.</li>
+          <li><strong>Send the message</strong>WhatsApp opens with your request ready to send.</li>
+          <li><strong>Get your slot</strong>We reply with available times and confirm.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="visit" id="book-now" aria-labelledby="visit-h">
+      <div class="wrap">
+        <h2 id="visit-h">Visit the studio</h2>
+        <div class="facts">
+          <div>
+            <p><strong>Zola Hair &amp; Beauty Studio</strong><br>12 Example Street, Rosebank<br>Johannesburg, 2196</p>
+            <a class="cta" id="cta-wa" href="#">Message us on WhatsApp</a>
+          </div>
+          <table aria-label="Opening hours">
+            <tr>
+              <td>Monday to Friday</td>
+              <td>08:00 to 18:00</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td>08:00 to 16:00</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td>Closed</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Demo project built with HTML, CSS and JavaScript. Salon name, address and prices are fictional
+      sample content.</div>
+  </footer>
+
+  <script>
+    // 1) Replace with your own WhatsApp number: country code, no plus, no spaces.
+    const WHATSAPP_NUMBER = "27693627352";
+
+    function waLink(text) {
+      return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+    }
+    const generic = "Hi Zola Hair & Beauty, I'd like to make a booking.";
+    document.getElementById("top-wa").href = waLink(generic);
+    document.getElementById("cta-wa").href = waLink(generic);
+
+    document.querySelectorAll(".item").forEach(function (item) {
+      var btn = item.querySelector(".book");
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".item.picked").forEach(function (el) { el.classList.remove("picked"); });
+        item.classList.add("picked");
+        var msg = "Hi Zola Hair & Beauty, I'd like to book " + item.dataset.name +
+          " (R" + item.dataset.price + "). What times are available this week?";
+        window.open(waLink(msg), "_blank", "noopener");
+      });
+    });
+  </script>
+</body>
+
+</html>
